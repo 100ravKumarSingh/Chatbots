@@ -25,7 +25,7 @@ def collect_messages(_):
     pn.Row('user: ', pn.pane.Markdown(prompt, width=300))
     )
     panels.append(
-    pn.Row('assistant: ',pn.pane.Markdown(response, width=300,  style={'background-color':'green'}))
+    pn.Row('assistant: ',pn.pane.Markdown(response, width=300,  style={'background-color':'yellow'}))
     )
     return pn.Column(*panels)
 
