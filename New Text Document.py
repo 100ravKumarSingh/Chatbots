@@ -35,13 +35,30 @@ sentiment: <{sentiment}>"""
 
 response=get_completion(prompt)
 print(response) 
- 
+#get_completion_from_messgaes
+def get_completion_from_messages():
+    
+
+#collect_messages
+def collect_messages(_):
+    prompt=inp.value_input
+	inp.value=''
+    context.append({'role':'user','content':f"{prompt}"})
+    response=get_completion_from_messages(context)
+    panels.append(
+        pn.Row('user:', pn.pane.Markdown(prompt, width="300"))
+    )
+    panels.append(
+        pn.Row('assistant:', pn.pane.Markdown(response, width="300"))
+    )
+    return pn.column(*panels)
+
 # display panel 
 import panel as pn
 pn.extension()
 panels=[]
 context=[]
-input=pn.widgets.TextInput(value="Hi",placeholder="Enter your text here")
+inp=pn.widgets.TextInput(value="Hi",placeholder="Enter your text here")
 button=pn.widgets.Button(name="Chat")
 interaction=pn.bind(collect_messages, button)
 # dashboard
