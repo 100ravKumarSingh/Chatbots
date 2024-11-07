@@ -12,6 +12,15 @@ def get_completion(prompt,model='gpt-3.5-turbo'):
     temperature=0,
     )
     return response.choices[0].message["content"]
+
+#get_completion_from_messgaes
+def get_completion_from_messages(messages,model='gpt-3.5-turbo'):
+    response=openai.ChatCompletion.create(
+    model=model,
+    messages=messages,
+    temperature=0,
+    )
+    return response.choices[0].message["content"]
     
 review=f"""Best place to plan your stay.\
 Good facilities available at affordable prices. The attached washroom in every room  is an\
@@ -35,8 +44,6 @@ sentiment: <{sentiment}>"""
 
 response=get_completion(prompt)
 print(response) 
-#get_completion_from_messgaes
-def get_completion_from_messages():
     
 
 #collect_messages
