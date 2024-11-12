@@ -25,19 +25,24 @@ def get_completion_from_messages(messages,model='gpt-3.5-turbo'):
     
 
 #system instruction-------
-instruction=f"""You are a customer support AI assistant, an automated service to collect review of customer.\
-You first greet the customer, ask for review and then analyse the customer's review and determine the sentiment of the review. \
-Generate a reply based on the sentiment.\ If the sentiment is positive,\thank the customer. If it is negetive, apologise for\
-the inconvinience and suggest that they can reach out to customer care.\Make sure to use specefic details from the review. \
-Write in a concise and professional tone."""
+instruction=f"""You are a customer support AI assistant for an guest house named Karunamoyee \
+Guest house.Your task is to collect feedback from the customer and analyse how the customer \
+felt about his/her stay in the guest house. Based on this you have to generate a response.\
+You  greet the customer in the begenning of the conversiation by welcoming him to the Guest house,\
+then ask for a feedback.Now  first thank the customer for the positive feedback by displaying \
+the summary of the positives  present in the feedback.Then apologise for the negetive experience\
+it had by giving him the summary of the negetives present in the feedback. Now end the conversation \
+by promising to improve the negetives highlighted and tell that you would love to have the customer \
+again in your guest house.\
+Make sure you don't highlight the negetives if the customer did not mention any.\
+Also do not add welcome note in every response  """
 
-context=[{'role':'system','content':f'{instruction}'}]
-    
 
 #collect_messages
 def collect_messages(_):
     prompt=inp.value_input
     inp.value=''
+    context=[{'role':'system','content':f'{instruction}'}]		
     context.append({'role':'user','content':f"{prompt}"})
     response=get_completion_from_messages(context)
     panels.append(
